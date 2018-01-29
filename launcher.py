@@ -16,7 +16,7 @@ class Launcher:
         self.last_time = 0
         #物件設定
         self.P1 = wall.Player(self, 'r')
-        self.P2 = None
+        self.P2 = wall.Player(self, 'l')
         self.balls = []
 
     def repaint(self):
@@ -24,6 +24,7 @@ class Launcher:
         for ball in self.balls:
             ball.repaint(self.screen)
         self.P1.repait(self.screen)
+        self.P2.repait(self.screen)
 
         pygame.display.flip()
         pygame.display.update()
@@ -32,6 +33,7 @@ class Launcher:
         for b in self.balls:
             b.update()
         self.P1.update()
+        self.P2.update()
 
     def begin(self):
         while True:
@@ -45,7 +47,7 @@ class Launcher:
             self.clock.tick(30)
 
     def creat_ball(self):
-        if pygame.time.get_ticks() - self.last_time > 1000:
+        if pygame.time.get_ticks() - self.last_time > 1500:
             self.last_time = pygame.time.get_ticks()
             self.balls.append(ball.Ball(self))
 
