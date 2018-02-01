@@ -23,8 +23,8 @@ class Launcher:
         self.screen.fill([20, 50, 80])
         for ball in self.balls:
             ball.repaint(self.screen)
-        self.P1.repait(self.screen)
-        self.P2.repait(self.screen)
+        self.P1.repaint(self.screen)
+        self.P2.repaint(self.screen)
 
         pygame.display.flip()
         pygame.display.update()

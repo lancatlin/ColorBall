@@ -5,6 +5,7 @@ import game_object
 
 
 class Wall(game_object.GameObject):
+    '''兩邊牆壁物件，聽令於Player'''
     w = 30
     h = 100
 
@@ -31,6 +32,14 @@ class Wall(game_object.GameObject):
         y = self.y
         if y > 800 or y < -3*Wall.h:
             self.player.walls.remove(self)
+
+    def get_color(self, y):
+        y_range = [self.y + x*Wall.h for x in range(4)]
+        for i in range(3):
+            if y_range[i] < y < y_range[i+1]:
+                return Wall.colors[i]
+        else:
+            return None
 
 
 class Player(game_object.GameObject):
@@ -70,6 +79,12 @@ class Player(game_object.GameObject):
     def iskey(self, key):
         return self.master.iskey(key)
 
-    def repait(self, screen):
+    def repaint(self, screen):
         for w in self.walls:
             w.repaint(screen)
+
+    def get_color(self, y):
+        for w in self.walls:
+            result = w.get_color(y)
+            if result is not None:
+                return result

@@ -10,7 +10,7 @@ class GameObject:
         (0, 0, 255)
     ]
 
-    def repait(self, screen):
+    def repaint(self, screen):
         pass
 
     def update(self):
