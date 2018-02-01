@@ -26,10 +26,13 @@ class Ball(GameObject):
         self.y += self.y_change
         self.x += self.change
         c = None
+        p = None
         if self.x > (self.master.wh[0] - 20 - self.r):
-            c = self.master.P1.get_color(self.y)
+            p = self.master.P1
+            c = p.get_color(self.y)
         elif self.x < 20 + self.r:
-            c = self.master.P2.get_color(self.y)
+            p = self.master.P2
+            c = p.get_color(self.y)
         elif self.y > 800 + self.r:
             print("Die")
             self.kill()
@@ -39,6 +42,7 @@ class Ball(GameObject):
                 self.change *= -1.1
                 self.y_change *= 1.1
                 self.r += 1
+                p.score += 1
             else:
                 self.kill()
 
