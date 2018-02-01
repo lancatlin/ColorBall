@@ -11,6 +11,7 @@ class Launcher:
         pygame.init()
         self.wh = (800, 800)
         self.screen = pygame.display.set_mode(self.wh)
+        pygame.display.set_caption("ColorBall 彩色碰碰球")
         self.surface = pygame.Surface(self.wh)
         self.clock = pygame.time.Clock()
         self.last_time = 0

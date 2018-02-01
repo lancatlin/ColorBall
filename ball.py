@@ -20,9 +20,10 @@ class Ball(GameObject):
         self.r = 20
         self.color = random.choice(Ball.colors)
         self.live = True
+        self.y_change = random.uniform(0.5, 1.5)
 
     def update(self):
-        self.y += 1
+        self.y += self.y_change
         self.x += self.change
         c = None
         if self.x > (self.master.wh[0] - 20 - self.r):
@@ -30,11 +31,14 @@ class Ball(GameObject):
         elif self.x < 20 + self.r:
             c = self.master.P2.get_color(self.y)
         elif self.y > 800 + self.r:
+            print("Die")
             self.kill()
 
         if c:
             if c == self.color:
-                self.change *= -1
+                self.change *= -1.1
+                self.y_change *= 1.1
+                self.r += 1
             else:
                 self.kill()
 
@@ -42,4 +46,4 @@ class Ball(GameObject):
         self.master.balls.remove(self)
 
     def repaint(self, screen):
-        pygame.draw.circle(screen, self.color, [self.x, self.y], self.r)
+        pygame.draw.circle(screen, self.color, [int(self.x), int(self.y)], self.r)
