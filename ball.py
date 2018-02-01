@@ -24,14 +24,15 @@ class Ball(GameObject):
     def update(self):
         self.y += 1
         self.x += self.change
+        c = None
         if self.x > (self.master.wh[0] - 20 - self.r):
             c = self.master.P1.get_color(self.y)
-            if c == self.color:
-                self.change *= -1
-            else:
-                self.kill()
         elif self.x < 20 + self.r:
             c = self.master.P2.get_color(self.y)
+        elif self.y > 800 + self.r:
+            self.kill()
+
+        if c:
             if c == self.color:
                 self.change *= -1
             else:

@@ -43,6 +43,8 @@ class Wall(game_object.GameObject):
 
 
 class Player(game_object.GameObject):
+    '''玩家物件，操縱兩個牆壁，並負責其他程式與牆壁的中介
+    玩家物件本身沒有畫面'''
     def __init__(self, master, mode='r'):
         self.master = master
         if mode == 'l':
@@ -58,9 +60,9 @@ class Player(game_object.GameObject):
     def update(self):
         change = 0
         if self.iskey(self.keys['up']):
-            change = -6
+            change = -8
         elif self.iskey(self.keys['dw']):
-            change = 6
+            change = 8
 
         for w in self.walls:
             w.kill()
