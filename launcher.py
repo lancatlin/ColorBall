@@ -4,8 +4,9 @@ import sys
 
 import ball
 import wall
+from game_object import GameObject
 
-class Launcher:
+class Launcher(GameObject):
     def __init__(self):
         pygame.init()
         self.wh = (800, 800)
@@ -22,14 +23,13 @@ class Launcher:
         self.font = pygame.font.Font("freesansbold.ttf", 64)
 
     def repaint(self):
-        self.screen.fill([20, 50, 80])
+        self.screen.fill(self.bg)
         for ball in self.balls:
             ball.repaint(self.screen)
         self.P1.repaint(self.screen)
         self.P2.repaint(self.screen)
         string = "Time:"+str(self.time - int(pygame.time.get_ticks()/1000))
-        text = self.font.render(string, True, [255,255,255])
-        self.screen.blit(text, (250,30))
+        GameObject.txt(self.screen, string, 64, [255, 255, 255], (400, 40))
 
         pygame.display.flip()
         pygame.display.update()
@@ -59,7 +59,3 @@ class Launcher:
     def iskey(self, key):
         allkey = pygame.key.get_pressed()
         return allkey[key]
-
-
-root = Launcher()
-root.begin()

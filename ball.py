@@ -33,7 +33,7 @@ class Ball(GameObject):
         elif self.x < 20 + self.r:
             p = self.master.P2
             c = p.get_color(self.y)
-        elif self.y > 800 + self.r:
+        elif self.y > 800:
             print("Die")
             self.kill()
 
