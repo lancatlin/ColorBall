@@ -8,7 +8,7 @@ from game_object import GameObject
 
 setting = json.load(open('setting.json', 'r'))
 
-class Launcher(GameObject):
+class Launcher:
     def __init__(self):
         pygame.init()
         self.wh = (800, 800)
@@ -25,13 +25,14 @@ class Launcher(GameObject):
         self.font = pygame.font.Font("freesansbold.ttf", 64)
 
     def repaint(self):
-        self.screen.fill(self.bg)
+        self.screen.fill([20, 50, 80])
         for ball in self.balls:
             ball.repaint(self.screen)
         self.P1.repaint(self.screen)
         self.P2.repaint(self.screen)
         string = "Time:"+str(self.time - int(pygame.time.get_ticks()/1000))
-        GameObject.txt(self.screen, string, 64, [255, 255, 255], (400, 40))
+        text = self.font.render(string, True, [255,255,255])
+        self.screen.blit(text, (250,30))
 
         pygame.display.flip()
         pygame.display.update()
@@ -64,13 +65,23 @@ class Launcher(GameObject):
         self.P2.update()
 
     def begin(self):
+        pygame.mixer.init()
+        sound = pygame.mixer.Sound('sound/background.wav')
+        sound.play(-1)
+        ending = False
+
         while True:
             for e in pygame.event.get():
                 if e.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
-            if self.time-(pygame.time.get_ticks()/1000) <= 0:
+            if ending:
                 self.end()
+            elif self.time-(pygame.time.get_ticks()/1000) <= 0:
+                sound.stop()
+                sound = pygame.mixer.Sound('sound/triumph.wav')
+                sound.play()
+                ending = True
             else:
                 self.update()
                 self.repaint()
@@ -85,3 +96,7 @@ class Launcher(GameObject):
     def iskey(self, key):
         allkey = pygame.key.get_pressed()
         return allkey[key]
+
+
+root = Launcher()
+root.begin()
