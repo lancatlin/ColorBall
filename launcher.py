@@ -1,9 +1,9 @@
 import pygame
-import random
 import sys
 
 import ball
 import wall
+from game_object import GameObject
 
 class Launcher:
     def __init__(self):
@@ -34,6 +34,27 @@ class Launcher:
         pygame.display.flip()
         pygame.display.update()
 
+    def end(self):
+        self.screen.fill([20, 50, 80])
+        self.P1.repaint(self.screen)
+        self.P2.repaint(self.screen)
+        if self.P1.score > self.P2.score:
+            winner = "P1 Win"
+            color = self.P1.color
+        elif self.P2.score > self.P1.score:
+            winner = "P2 win"
+            color = self.P2.color
+        else:
+            winner = "Tie"
+            color = GameObject.colors[1]
+        font = pygame.font.Font('freesansbold.ttf', 90)
+        text = font.render(winner, True, color)
+        rect = text.get_rect()
+        rect.center = (400, 400)
+        self.screen.blit(text, rect)
+        pygame.display.flip()
+        pygame.display.update()
+
     def update(self):
         for b in self.balls:
             b.update()
@@ -46,9 +67,12 @@ class Launcher:
                 if e.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
-            self.update()
-            self.repaint()
-            self.creat_ball()
+            if self.time-(pygame.time.get_ticks()/1000) <= 0:
+                self.end()
+            else:
+                self.update()
+                self.repaint()
+                self.creat_ball()
             self.clock.tick(30)
 
     def creat_ball(self):
