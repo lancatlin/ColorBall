@@ -1,13 +1,10 @@
-import pygame
+import json
+
+setting = json.load(open('setting.json', 'r'))
 
 
 class GameObject:
-    colors = [
-        (255, 80, 40),
-        (200, 255, 100),
-        (80, 190, 255)
-    ]
-    bg = [20, 50, 80]
+    colors = setting["colors"]
 
     def repaint(self, screen):
         pass

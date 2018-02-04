@@ -1,18 +1,20 @@
 import pygame
 from pygame.locals import *
 
+
 import game_object
 
 
 class Wall(game_object.GameObject):
     '''兩邊牆壁物件，聽令於Player'''
     w = 30
-    h = 100
+    h = 150
 
     def __init__(self, player, y):
         self.player = player
         self.x = player.x
         self.y = y
+        self.color = []
 
     def repaint(self, screen):
         y = [self.y + x*Wall.h for x in range(3)]
@@ -78,12 +80,15 @@ class Player(game_object.GameObject):
             y = self.HIGH
             self.walls.append((Wall(self, y)))
 
+        if self.score < 0:
+            self.score = 0
+
     def iskey(self, key):
         return self.master.iskey(key)
 
     def repaint(self, screen):
         string = self.name+':'+str(self.score)
-        text_color = [255,255,255]
+        text_color = self.color
         text = self.font.render(string, True, text_color)
         screen.blit(text, (self.text_x,50))
         for w in self.walls:
@@ -103,6 +108,7 @@ class P1(Player):
         self.x = self.master.wh[0]-Wall.w
         self.keys = {'up': K_UP, 'dw': K_DOWN}
         self.text_x = 650
+        self.color = self.colors[0]
 
 
 class P2(Player):
@@ -112,3 +118,4 @@ class P2(Player):
         self.x = 0
         self.keys = {'up': K_w, 'dw': K_s}
         self.text_x = 50
+        self.color = self.colors[2]
