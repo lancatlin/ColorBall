@@ -25,7 +25,7 @@ class Launcher:
         self.font = pygame.font.Font("freesansbold.ttf", 64)
 
     def repaint(self):
-        self.screen.fill([20, 50, 80])
+        self.screen.fill(setting['bg'])
         for ball in self.balls:
             ball.repaint(self.screen)
         self.P1.repaint(self.screen)
@@ -38,7 +38,7 @@ class Launcher:
         pygame.display.update()
 
     def end(self):
-        self.screen.fill([20, 50, 80])
+        self.screen.fill(setting['bg'])
         self.P1.repaint(self.screen)
         self.P2.repaint(self.screen)
         if self.P1.score > self.P2.score:

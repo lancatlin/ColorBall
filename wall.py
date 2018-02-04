@@ -1,14 +1,17 @@
 import pygame
 from pygame.locals import *
+import json
 
 
 import game_object
 
 
+setting = json.load(open('setting.json', 'r'))
+
 class Wall(game_object.GameObject):
     '''兩邊牆壁物件，聽令於Player'''
-    w = 30
-    h = 150
+    w = setting['w']
+    h = setting['h']
 
     def __init__(self, player, y):
         self.player = player
@@ -62,9 +65,9 @@ class Player(game_object.GameObject):
     def update(self):
         change = 0
         if self.iskey(self.keys['up']):
-            change = -8
+            change = -setting['speed']
         elif self.iskey(self.keys['dw']):
-            change = 8
+            change = setting['speed']
 
         for w in self.walls:
             w.kill()
