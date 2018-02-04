@@ -2,11 +2,10 @@ import pygame
 from pygame.locals import *
 import json
 
-
 import game_object
 
 
-setting = json.load(open('setting.json', 'r'))
+setting = json.load(open('data/setting.json', 'r'))
 
 class Wall(game_object.GameObject):
     '''兩邊牆壁物件，聽令於Player'''
@@ -55,7 +54,7 @@ class Player(game_object.GameObject):
         self.walls = []
         self.HIGH = 0
         self.LOW = 800
-        self.font = pygame.font.Font("freesansbold.ttf", 45)
+        self.font = pygame.font.Font("data/font/freesansbold.ttf", 45)
         self.keys = {}
         self.x = 0
         self.text_x = 0

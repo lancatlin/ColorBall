@@ -1,6 +1,6 @@
 import json
 
-setting = json.load(open('setting.json', 'r'))
+setting = json.load(open('data/setting.json', 'r'))
 
 
 class GameObject:

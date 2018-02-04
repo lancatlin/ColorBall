@@ -6,7 +6,7 @@ import ball
 import wall
 from game_object import GameObject
 
-setting = json.load(open('setting.json', 'r'))
+setting = json.load(open('data/setting.json', 'r'))
 
 class Launcher:
     def __init__(self):
@@ -22,7 +22,7 @@ class Launcher:
         self.P1 = wall.P1(self)
         self.P2 = wall.P2(self)
         self.balls = []
-        self.font = pygame.font.Font("freesansbold.ttf", 64)
+        self.font = pygame.font.Font("data/font/freesansbold.ttf", 64)
 
     def repaint(self):
         self.screen.fill(setting['bg'])
@@ -50,7 +50,7 @@ class Launcher:
         else:
             winner = "Tie"
             color = GameObject.colors[1]
-        font = pygame.font.Font('freesansbold.ttf', 90)
+        font = pygame.font.Font('data/font/freesansbold.ttf', 90)
         text = font.render(winner, True, color)
         rect = text.get_rect()
         rect.center = (400, 400)
@@ -66,7 +66,7 @@ class Launcher:
 
     def begin(self):
         pygame.mixer.init()
-        sound = pygame.mixer.Sound('sound/background.wav')
+        sound = pygame.mixer.Sound('data/sound/background.wav')
         sound.play(-1)
         ending = False
 
@@ -79,7 +79,7 @@ class Launcher:
                 self.end()
             elif self.time-(pygame.time.get_ticks()/1000) <= 0:
                 sound.stop()
-                sound = pygame.mixer.Sound('sound/triumph.wav')
+                sound = pygame.mixer.Sound('data/sound/triumph.wav')
                 sound.play()
                 ending = True
             else:

@@ -43,10 +43,10 @@ class Ball(GameObject):
                 self.y_change *= 1.1
                 self.r += 1
                 p.score += 1
-                sound = pygame.mixer.Sound('sound/pop.wav')
+                sound = pygame.mixer.Sound('data/sound/pop.wav')
                 sound.play()
             else:
-                sound = pygame.mixer.Sound('sound/dead.wav')
+                sound = pygame.mixer.Sound('data/sound/dead.wav')
                 sound.play()
                 p.score -= 1
                 self.kill()
