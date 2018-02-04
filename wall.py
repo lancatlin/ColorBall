@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 
+
 import game_object
 
 
@@ -78,6 +79,9 @@ class Player(game_object.GameObject):
         elif self.HIGH < 800:
             y = self.HIGH
             self.walls.append((Wall(self, y)))
+
+        if self.score < 0:
+            self.score = 0
 
     def iskey(self, key):
         return self.master.iskey(key)

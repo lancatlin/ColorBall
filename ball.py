@@ -44,6 +44,7 @@ class Ball(GameObject):
                 self.r += 1
                 p.score += 1
             else:
+                p.score -= 1
                 self.kill()
 
     def kill(self):

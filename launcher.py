@@ -1,9 +1,12 @@
 import pygame
 import sys
+import json
 
 import ball
 import wall
 from game_object import GameObject
+
+setting = json.load(open('setting.json', 'r'))
 
 class Launcher:
     def __init__(self):
@@ -13,7 +16,7 @@ class Launcher:
         pygame.display.set_caption("ColorBall 彩色碰碰球")
         self.surface = pygame.Surface(self.wh)
         self.clock = pygame.time.Clock()
-        self.time = 120
+        self.time = setting['time']
         self.last_time = 0
         #物件設定
         self.P1 = wall.P1(self)
