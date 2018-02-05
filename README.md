@@ -5,12 +5,12 @@
 在時間內盡量增加自己的分數，時間到結束。
   
 ### 安裝遊戲：
+#### 安裝執行檔(建議)：
+下載[執行檔zip](https://github.com/lancatlin/ColorBall/raw/master/ColorBall.zip)包，解壓縮後點擊ColorBall.exe即可執行  
+
 #### 安裝python文件:
 下載程式zip包，執行launcher.py  
-環境依賴python3.5, pygame1.9.3  
-  
-#### 安裝執行檔：
-下載執行檔zip包，解壓縮後點擊ColorBall.exe即可執行  
+環境依賴python3, pygame1.9.3  
   
 ### 自訂遊戲規則：
 設定遊戲目錄下的data資料夾中setting.json文件，可改變遊戲規則：
